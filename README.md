@@ -6,10 +6,13 @@ Fully customizable React Native input-component to add tags to an array. The tag
 <img src="https://firebasestorage.googleapis.com/v0/b/jb-labs-com.appspot.com/o/db%2Fimages%2FgithubImages%2Freact-native-tags-input.gif?alt=media&token=aa931a39-7860-4776-9a0d-bcef974fdebd"/>
 
 ## Npm repo
-
+https://www.npmjs.com/package/react-native-tags-input
 
 ## Git repo
 https://github.com/jimmybengtsson/react-native-tags-input
+
+## Getting started
+`$ npm install react-native-tags-input --save`
 
 ## Props
 |    | necessary | types | about
@@ -29,12 +32,12 @@ https://github.com/jimmybengtsson/react-native-tags-input
 |tagsViewStyle|  | styles | Styles for the view component containing the tag-chips |
 |tagStyle|  | styles | Styles for the tag-chips |
 |tagTextStyle|  | styles | Styles for the text inside a tag-chip |
-|disabled| |boolean|Active input or not? **true** for standard|
+|disabled| |boolean|Active input or not? **false** for standard|
 |disabledInputStyle|  |styles| Styles for when the input is disabled|
 |deleteIconStyles| |styles|Styles for the delete icon|
 
-## Getting started
-`$ npm install react-native-tags-input --save`
+> This component also inherits
+> [all native TextInput props that come with a standard React Native TextInput element](https://facebook.github.io/react-native/docs/textinput.html).
 
 ## Standard example
 ```javascript
