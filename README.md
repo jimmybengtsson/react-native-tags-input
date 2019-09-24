@@ -3,7 +3,7 @@
 
 Fully customizable React Native input-component to add tags to an array. The tags are displayed as chips that can be deleted.
 
-<img src=""/>
+<img src="https://firebasestorage.googleapis.com/v0/b/jb-labs-com.appspot.com/o/db%2Fimages%2FgithubImages%2Freact-native-tags-input.gif?alt=media&token=aa931a39-7860-4776-9a0d-bcef974fdebd"/>
 
 ## Npm repo
 
