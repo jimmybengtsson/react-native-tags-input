@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/jimmybengtsson/react-native-tags-input/issues"
   },
-  "homepage": "https://github.com/jimmybengtsson/react-native-tags-input#readme"
+  "homepage": "https://github.com/jimmybengtsson/react-native-tags-input#readme",
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  }
 }
