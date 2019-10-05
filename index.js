@@ -232,7 +232,7 @@ const styles = {
     borderRadius: 13,
     backgroundColor: '#979797',
     minWidth: 40,
-    maxWidth: 100,
+    maxWidth: 200,
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 5,
