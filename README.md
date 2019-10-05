@@ -39,7 +39,15 @@ https://github.com/jimmybengtsson/react-native-tags-input
 > This component also inherits
 > [all native TextInput props that come with a standard React Native TextInput element](https://facebook.github.io/react-native/docs/textinput.html).
 
+## Examples
+
+[Standard and Custom example](https://github.com/jimmybengtsson/react-native-tags-input/tree/master/example/StandardAndCustomExample)
+
+
 ## Standard example
+
+<img src="https://raw.githubusercontent.com/jimmybengtsson/react-native-tags-input/master/githubImage/StandardExample.gif"/>
+
 ```javascript
 import React, { Component } from 'react';
 import {
@@ -89,6 +97,9 @@ const styles = StyleSheet.create({
 ```
 
 ## Custom example
+
+<img src="https://raw.githubusercontent.com/jimmybengtsson/react-native-tags-input/master/githubImage/react-native-tags-input.gif"/>
+
 ```javascript
 import React, { Component } from 'react';
 import {

@@ -13,3 +13,5 @@ then:
 and finally: 
 
 `$ react-native run-ios` or `$ react-native run-android`
+
+<img src="https://raw.githubusercontent.com/jimmybengtsson/react-native-tags-input/master/example/StandardAndCustomExample/assets/example.gif"/>
