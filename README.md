@@ -35,6 +35,7 @@ https://github.com/jimmybengtsson/react-native-tags-input
 |disabled| |boolean|Active input or not? **false** for standard|
 |disabledInputStyle|  |styles| Styles for when the input is disabled|
 |deleteIconStyles| |styles|Styles for the delete icon|
+|customElement| |element|Element to be displayed between input and tags. For example suggestions. (Auto suggestions will be implemented in a future release)|
 
 > This component also inherits
 > [all native TextInput props that come with a standard React Native TextInput element](https://facebook.github.io/react-native/docs/textinput.html).
