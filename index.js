@@ -118,51 +118,53 @@ class Tags extends React.Component {
       tagsViewStyle,
       updateState,
       keysForTag,
-      deleteIconStyles
+      deleteIconStyles,
+      customElement,
     } = this.props;
 
     const props = this.props;
     return (
       <View style={StyleSheet.flatten([styles.container, containerStyle])}>
       {label ? this.renderLabel(label, StyleSheet.flatten([styles.labelStyle, labelStyle])) : null}
-      <View style={StyleSheet.flatten(StyleSheet.flatten([styles.inputContainer, inputContainerStyle]))}>
-      {leftElement ? this.renderLeftElement(leftElement, leftElementContainerStyle) : null}
-      <TextInput
-    underlineColorAndroid="transparent"
-    editable={!disabled}
-    ref={ref => {
-      this.input = ref;
-    }}
-    style={StyleSheet.flatten([
-        styles.input,
-        inputStyle,
-        disabled && styles.disabledInput,
-        disabled && disabledInputStyle,
-      ])}
-    {...props}
-    value={tags.tag}
-    onChangeText={text => this.onChangeText(text, tags, updateState, keysForTag)}
-    />
-    {rightElement ? this.renderRightElement(rightElement, rightElementContainerStyle) : null}
-  </View>
-    <View style={StyleSheet.flatten([styles.tagsView, tagsViewStyle])}>
-      {tags.tagsArray.map((item, count) => {
-          return (
-            <View
-          style={StyleSheet.flatten([styles.tag, tagStyle])}
-          key={count}
-            >
-            <Text style={StyleSheet.flatten([styles.tagText, tagTextStyle])}>{item}</Text>
-            <TouchableHighlight onPress={() => this.deleteTag(count, tags, updateState) }>
-        <Image
-          source={require('./assets/close.png')}
-          style={StyleSheet.flatten([styles.deleteIcon, deleteIconStyles])}
-          />
-          </TouchableHighlight>
-          </View>
-        )
-        })}
+        <View style={StyleSheet.flatten(StyleSheet.flatten([styles.inputContainer, inputContainerStyle]))}>
+          {leftElement ? this.renderLeftElement(leftElement, leftElementContainerStyle) : null}
+          <TextInput
+            underlineColorAndroid="transparent"
+            editable={!disabled}
+            ref={ref => {
+              this.input = ref;
+            }}
+            style={StyleSheet.flatten([
+                styles.input,
+                inputStyle,
+                disabled && styles.disabledInput,
+                disabled && disabledInputStyle,
+              ])}
+            {...props}
+            value={tags.tag}
+            onChangeText={text => this.onChangeText(text, tags, updateState, keysForTag)}
+        />
+        {rightElement ? this.renderRightElement(rightElement, rightElementContainerStyle) : null}
       </View>
+        {customElement ? customElement : null}
+      <View style={StyleSheet.flatten([styles.tagsView, tagsViewStyle])}>
+        {tags.tagsArray.map((item, count) => {
+            return (
+              <View
+                style={StyleSheet.flatten([styles.tag, tagStyle])}
+                key={count}
+              >
+              <Text style={StyleSheet.flatten([styles.tagText, tagTextStyle])}>{item}</Text>
+              <TouchableHighlight onPress={() => this.deleteTag(count, tags, updateState) }>
+                <Image
+                  source={require('./assets/close.png')}
+                  style={StyleSheet.flatten([styles.deleteIcon, deleteIconStyles])}
+                  />
+            </TouchableHighlight>
+            </View>
+          )
+          })}
+        </View>
       </View>
   );
   }
@@ -172,6 +174,7 @@ Tags.propTypes = {
   disabled: PropTypes.bool,
   leftElement: PropTypes.element,
   rightElement: PropTypes.element,
+  customElement: PropTypes.element,
   label: PropTypes.string,
   tags: PropTypes.object,
   updateState: PropTypes.function,
