@@ -14,3 +14,6 @@ In the root directory of the app, run:
 then:
 
 `$ react-native run-ios` or `$ react-native run-android`
+
+
+<img src="https://raw.githubusercontent.com/jimmybengtsson/react-native-tags-input/master/example/AutoSuggestExample/assets/example.gif"/>

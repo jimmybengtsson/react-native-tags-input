@@ -44,6 +44,8 @@ https://github.com/jimmybengtsson/react-native-tags-input
 
 [Standard and Custom example](https://github.com/jimmybengtsson/react-native-tags-input/tree/master/example/StandardAndCustomExample)
 
+[Auto suggest example by using customElement-prop](https://github.com/jimmybengtsson/react-native-tags-input/tree/master/example/AutoSuggestExample)
+
 
 ## Standard example
 
