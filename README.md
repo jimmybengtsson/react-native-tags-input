@@ -34,6 +34,7 @@ https://github.com/jimmybengtsson/react-native-tags-input
 |tagTextStyle|  | styles | Styles for the text inside a tag-chip |
 |disabled| |boolean|Active input or not? **false** for standard|
 |disabledInputStyle|  |styles| Styles for when the input is disabled|
+|customElement| |element|If this is included, the delete icon will be replaced by the element provided. (Thanks to periabyte)|
 |deleteIconStyles| |styles|Styles for the delete icon|
 |customElement| |element|Element to be displayed between input and tags. For example suggestions. (Auto suggestions will be implemented in a future release)|
 
