@@ -118,6 +118,7 @@ class Tags extends React.Component {
       tagsViewStyle,
       updateState,
       keysForTag,
+      deleteElement,
       deleteIconStyles,
       customElement,
     } = this.props;
@@ -156,10 +157,12 @@ class Tags extends React.Component {
               >
               <Text style={StyleSheet.flatten([styles.tagText, tagTextStyle])}>{item}</Text>
               <TouchableHighlight onPress={() => this.deleteTag(count, tags, updateState) }>
-                <Image
-                  source={require('./assets/close.png')}
-                  style={StyleSheet.flatten([styles.deleteIcon, deleteIconStyles])}
-                  />
+                  {deleteElement ? deleteElement : (
+                    <Image
+                      source={require('./assets/close.png')}
+                      style={StyleSheet.flatten([styles.deleteIcon, deleteIconStyles])}
+                    />
+                  )}
             </TouchableHighlight>
             </View>
           )
