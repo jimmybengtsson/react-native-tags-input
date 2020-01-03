@@ -180,15 +180,15 @@ Tags.propTypes = {
   customElement: PropTypes.element,
   label: PropTypes.string,
   tags: PropTypes.object,
-  updateState: PropTypes.function,
+  updateState: PropTypes.func,
   keysForTag: PropTypes.string,
   containerStyle: ViewPropTypes.style,
   inputContainerStyle: ViewPropTypes.style,
-  inputStyle: ViewPropTypes.style,
+  inputStyle: TextInput.propTypes.style,
   disabledInputStyle: ViewPropTypes.style,
   leftElementContainerStyle: ViewPropTypes.style,
   rightElementContainerStyle: ViewPropTypes.style,
-  labelStyle: ViewPropTypes.style,
+  labelStyle: Text.propTypes.style,
   deleteIconStyles: ViewPropTypes.style,
 };
 
