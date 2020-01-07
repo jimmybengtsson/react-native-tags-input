@@ -156,7 +156,7 @@ class Tags extends React.Component {
                 key={count}
               >
               <Text style={StyleSheet.flatten([styles.tagText, tagTextStyle])}>{item}</Text>
-              <TouchableHighlight onPress={() => this.deleteTag(count, tags, updateState) }>
+              <TouchableHighlight onPressIn={() => this.deleteTag(count, tags, updateState) }>
                   {deleteElement ? deleteElement : (
                     <Image
                       source={require('./assets/close.png')}
