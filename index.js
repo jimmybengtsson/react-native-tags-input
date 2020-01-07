@@ -6,7 +6,7 @@ import {
   TextInput,
   StyleSheet,
   Image,
-  TouchableHighlight,
+  TouchableOpacity,
   ViewPropTypes
 } from 'react-native';
 
@@ -156,14 +156,14 @@ class Tags extends React.Component {
                 key={count}
               >
               <Text style={StyleSheet.flatten([styles.tagText, tagTextStyle])}>{item}</Text>
-              <TouchableHighlight onPress={() => this.deleteTag(count, tags, updateState) }>
+              <TouchableOpacity onPress={() => this.deleteTag(count, tags, updateState) }>
                   {deleteElement ? deleteElement : (
                     <Image
                       source={require('./assets/close.png')}
                       style={StyleSheet.flatten([styles.deleteIcon, deleteIconStyles])}
                     />
                   )}
-            </TouchableHighlight>
+            </TouchableOpacity>
             </View>
           )
           })}
