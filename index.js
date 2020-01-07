@@ -56,7 +56,11 @@ class Tags extends React.Component {
   )
   };
 
-  onChangeText = (text, tags, updateState, keysForTags) => {
+  onChangeText = (text, tags, updateState, keysForTags, keysForTagsArray) => {
+
+    if (keysForTagsArray) {
+      return this.onChangeText2(text, tags, updateState, keysForTagsArray)
+    }
 
     let keysStr;
     if (typeof keysForTags === 'string') {
@@ -76,6 +80,36 @@ class Tags extends React.Component {
       let tempObject = {
         tag: '',
         tagsArray: tempArray
+      };
+      updateState(tempObject);
+      return this.input.clear();
+    }
+    let tempObject = {
+      tag: text,
+      tagsArray: tags.tagsArray
+    };
+    return updateState(tempObject)
+  };
+
+  onChangeText2 = (text, tags, updateState, keysForTagsArray) => {
+
+    const regexp = new RegExp(keysForTagsArray.join('|'));
+
+    if (regexp.test(text)) {
+      if (keysForTagsArray.includes(text)) {
+        // The following processing is required because multiple characters may be specified as one delimiter.
+        let tempObject = {
+          tag: '',
+          tagsArray: tags.tagsArray,
+         };
+        updateState(tempObject);
+        return this.input.clear();
+      }
+      const tempTag = text.replace(regexp, '');
+      const tempArray = tags.tagsArray.concat(tempTag);
+      let tempObject = {
+        tag: '',
+        tagsArray: [...new Set(tempArray)] // Deduplication
       };
       updateState(tempObject);
       return this.input.clear();
@@ -118,6 +152,7 @@ class Tags extends React.Component {
       tagsViewStyle,
       updateState,
       keysForTag,
+      keysForTagsArray,
       deleteElement,
       deleteIconStyles,
       customElement,
@@ -143,7 +178,7 @@ class Tags extends React.Component {
               ])}
             {...props}
             value={tags.tag}
-            onChangeText={text => this.onChangeText(text, tags, updateState, keysForTag)}
+            onChangeText={text => this.onChangeText(text, tags, updateState, keysForTag, keysForTagsArray)}
         />
         {rightElement ? this.renderRightElement(rightElement, rightElementContainerStyle) : null}
       </View>
@@ -182,6 +217,7 @@ Tags.propTypes = {
   tags: PropTypes.object,
   updateState: PropTypes.func,
   keysForTag: PropTypes.string,
+  keysForTagsArray: PropTypes.arrayOf(PropTypes.string),
   containerStyle: ViewPropTypes.style,
   inputContainerStyle: ViewPropTypes.style,
   inputStyle: TextInput.propTypes.style,
