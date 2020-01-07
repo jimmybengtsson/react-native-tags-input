@@ -70,12 +70,11 @@ class Tags extends React.Component {
         return
       }
       let tempTag = text.replace(keysStr, '');
-      let tempArray = tags.tagsArray;
+      const tempArray = tags.tagsArray.concat(tempTag);
       console.log(tempTag);
-      tempArray.push(tempTag);
       let tempObject = {
         tag: '',
-        tagsArray: tempArray
+        tagsArray: [...new Set(tempArray)] // Deduplication
       };
       updateState(tempObject);
       return this.input.clear();
