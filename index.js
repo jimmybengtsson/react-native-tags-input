@@ -71,7 +71,6 @@ class Tags extends React.Component {
       }
       let tempTag = text.replace(keysStr, '');
       let tempArray = tags.tagsArray;
-      console.log(tempTag);
       tempArray.push(tempTag);
       let tempObject = {
         tag: '',
