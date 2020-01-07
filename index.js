@@ -56,6 +56,19 @@ class Tags extends React.Component {
   )
   };
 
+  // If characters remain in the input field after input is completed, add them to the tag.
+  onEndEditing = (tags, updateState) => {
+    if (tags.tag) {
+      const tempArray = tags.tagsArray.concat(tags.tag);
+      const tempObject = {
+        tag: '',
+        tagsArray: [...new Set(tempArray)] // Deduplication
+      };
+      updateState(tempObject);
+      return this.input.clear();
+    }
+  }
+
   onChangeText = (text, tags, updateState, keysForTags) => {
 
     let keysStr;
@@ -144,6 +157,7 @@ class Tags extends React.Component {
             {...props}
             value={tags.tag}
             onChangeText={text => this.onChangeText(text, tags, updateState, keysForTag)}
+            onEndEditing={() => this.onEndEditing(tags, updateState)}
         />
         {rightElement ? this.renderRightElement(rightElement, rightElementContainerStyle) : null}
       </View>
