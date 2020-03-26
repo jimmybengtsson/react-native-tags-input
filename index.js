@@ -7,7 +7,8 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  ViewPropTypes
+  ViewPropTypes,
+  FlatList
 } from 'react-native';
 
 class Tags extends React.Component {
@@ -161,7 +162,7 @@ class Tags extends React.Component {
         {rightElement ? this.renderRightElement(rightElement, rightElementContainerStyle) : null}
       </View>
         {customElement ? customElement : null}
-      <View style={StyleSheet.flatten([styles.tagsView, tagsViewStyle])}>
+      <FlatList style={StyleSheet.flatten([styles.tagsView, tagsViewStyle])}>
         {tags.tagsArray.map((item, count) => {
             return (
               <View
@@ -180,7 +181,7 @@ class Tags extends React.Component {
             </View>
           )
           })}
-        </View>
+        </FlatList>
       </View>
   );
   }
