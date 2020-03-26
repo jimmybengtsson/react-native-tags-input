@@ -85,7 +85,6 @@ class Tags extends React.Component {
       }
       let tempTag = text.replace(keysStr, '');
       const tempArray = tags.tagsArray.concat(tempTag);
-      console.log(tempTag);
       let tempObject = {
         tag: '',
         tagsArray: [...new Set(tempArray)] // Deduplication
