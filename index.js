@@ -161,7 +161,7 @@ class Tags extends React.Component {
         {rightElement ? this.renderRightElement(rightElement, rightElementContainerStyle) : null}
       </View>
         {customElement ? customElement : null}
-      <FlatList style={StyleSheet.flatten([styles.tagsView, tagsViewStyle])}>
+      <FlatList contentContainerStyle={StyleSheet.flatten([styles.tagsView, tagsViewStyle])}>
         {tags.tagsArray.map((item, count) => {
             return (
               <View
