@@ -70,7 +70,11 @@ class Tags extends React.Component {
     }
   }
 
-  onChangeText = (text, tags, updateState, keysForTags) => {
+  onChangeText = (text, tags, updateState, keysForTags, keysForTagsArray) => {
+
+    if (keysForTagsArray) {
+      return this.onChangeText2(text, tags, updateState, keysForTagsArray)
+    }
 
     let keysStr;
     if (typeof keysForTags === 'string') {
@@ -84,6 +88,39 @@ class Tags extends React.Component {
         return
       }
       let tempTag = text.replace(keysStr, '');
+      const tempArray = tags.tagsArray.concat(tempTag);
+      let tempObject = {
+        tag: '',
+        tagsArray: [...new Set(tempArray)] // Deduplication
+      };
+      updateState(tempObject);
+      return this.input.clear();
+    }
+    let tempObject = {
+      tag: text,
+      tagsArray: tags.tagsArray
+    };
+    return updateState(tempObject)
+  };
+
+  onChangeText2 = (text, tags, updateState, keysForTagsArray) => {
+
+    // Escaping special characters.
+    const keys = keysForTagsArray.map((str) => (str+'').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1"));
+
+    const regexp = new RegExp(keys.join('|'));
+
+    if (regexp.test(text)) {
+      if (keysForTagsArray.includes(text)) {
+        // The following processing is required because multiple characters may be specified as one delimiter.
+        let tempObject = {
+          tag: '',
+          tagsArray: tags.tagsArray,
+        };
+        updateState(tempObject);
+        return this.input.clear();
+      }
+      const tempTag = text.replace(regexp, '');
       const tempArray = tags.tagsArray.concat(tempTag);
       let tempObject = {
         tag: '',
@@ -130,6 +167,7 @@ class Tags extends React.Component {
       tagsViewStyle,
       updateState,
       keysForTag,
+      keysForTagsArray,
       deleteElement,
       deleteIconStyles,
       customElement,
@@ -155,7 +193,7 @@ class Tags extends React.Component {
               ])}
             {...props}
             value={tags.tag}
-            onChangeText={text => this.onChangeText(text, tags, updateState, keysForTag)}
+            onChangeText={text => this.onChangeText(text, tags, updateState, keysForTag, keysForTagsArray)}
             onEndEditing={() => this.onEndEditing(tags, updateState)}
         />
         {rightElement ? this.renderRightElement(rightElement, rightElementContainerStyle) : null}
@@ -195,6 +233,7 @@ Tags.propTypes = {
   tags: PropTypes.object,
   updateState: PropTypes.func,
   keysForTag: PropTypes.string,
+  keysForTagsArray: PropTypes.arrayOf(PropTypes.string),
   containerStyle: ViewPropTypes.style,
   inputContainerStyle: ViewPropTypes.style,
   inputStyle: TextInput.propTypes.style,
