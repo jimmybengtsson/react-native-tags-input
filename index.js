@@ -206,7 +206,7 @@ class Tags extends React.Component {
                 key={count}
               >
               <Text style={StyleSheet.flatten([styles.tagText, tagTextStyle])}>{item}</Text>
-              <TouchableOpacity onPressIn={() => this.deleteTag(count, tags, updateState) }>
+              <TouchableOpacity onPress={() => this.deleteTag(count, tags, updateState) }>
                   {deleteElement ? deleteElement : (
                     <Image
                       source={require('./assets/close.png')}
@@ -282,11 +282,11 @@ const styles = {
   },
   tag: {
     flexDirection: 'row',
-    height: 26,
+    minHeight: 26,
     borderRadius: 13,
     backgroundColor: '#979797',
     minWidth: 40,
-    maxWidth: 200,
+    maxWidth: 250,
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 5,
@@ -295,7 +295,8 @@ const styles = {
     borderColor: 'gray'
   },
   tagText: {
-    marginHorizontal: 5
+		  marginHorizontal: 5,
+		  maxWidth: 200,
   },
   labelStyle: {
     fontSize: 12,
