@@ -6,7 +6,7 @@ declare module 'react-native-tags-input' {
 
   export interface Tags<T = Tag> {
     tag: T;
-    tagsArray: Record<string, T>;
+    tagsArray: T[];
   }
 
   export interface TagsInputProps<T = Tag> {
