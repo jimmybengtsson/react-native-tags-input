@@ -3,6 +3,7 @@
   "version": "1.0.10",
   "description": "Input component for React Native to add and remove tags.",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
