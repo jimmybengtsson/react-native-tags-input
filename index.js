@@ -206,14 +206,16 @@ class Tags extends React.Component {
                 key={count}
               >
               <Text style={StyleSheet.flatten([styles.tagText, tagTextStyle])}>{item}</Text>
-              <TouchableOpacity onPressIn={() => this.deleteTag(count, tags, updateState) }>
-                  {deleteElement ? deleteElement : (
-                    <Image
-                      source={require('./assets/close.png')}
-                      style={StyleSheet.flatten([styles.deleteIcon, deleteIconStyles])}
-                    />
-                  )}
-            </TouchableOpacity>
+              {disabled ? null :
+                <TouchableOpacity onPressIn={() => this.deleteTag(count, tags, updateState) }>
+                      {deleteElement ? deleteElement : (
+                        <Image
+                          source={require('./assets/close.png')}
+                          style={StyleSheet.flatten([styles.deleteIcon, deleteIconStyles])}
+                        />
+                      )}
+                </TouchableOpacity>
+              }
             </View>
           )
           })}
