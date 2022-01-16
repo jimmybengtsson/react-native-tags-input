@@ -6,7 +6,7 @@ import {
   TextInput,
   StyleSheet,
   Image,
-  TouchableOpacity,
+  TouchableHighlight,
   ViewPropTypes
 } from 'react-native';
 
@@ -56,24 +56,7 @@ class Tags extends React.Component {
   )
   };
 
-  // If characters remain in the input field after input is completed, add them to the tag.
-  onEndEditing = (tags, updateState) => {
-    if (tags.tag) {
-      const tempArray = tags.tagsArray.concat(tags.tag);
-      const tempObject = {
-        tag: '',
-        tagsArray: [...new Set(tempArray)] // Deduplication
-      };
-      updateState(tempObject);
-      return this.input.clear();
-    }
-  }
-
-  onChangeText = (text, tags, updateState, keysForTags, keysForTagsArray) => {
-
-    if (keysForTagsArray) {
-      return this.onChangeText2(text, tags, updateState, keysForTagsArray)
-    }
+  onChangeText = (text, tags, updateState, keysForTags) => {
 
     let keysStr;
     if (typeof keysForTags === 'string') {
@@ -87,43 +70,11 @@ class Tags extends React.Component {
         return
       }
       let tempTag = text.replace(keysStr, '');
-      const tempArray = tags.tagsArray.concat(tempTag);
+      let tempArray = tags.tagsArray;
+      tempArray.push(tempTag);
       let tempObject = {
         tag: '',
-        tagsArray: [...new Set(tempArray)] // Deduplication
-      };
-      updateState(tempObject);
-      return this.input.clear();
-    }
-    let tempObject = {
-      tag: text,
-      tagsArray: tags.tagsArray
-    };
-    return updateState(tempObject)
-  };
-
-  onChangeText2 = (text, tags, updateState, keysForTagsArray) => {
-
-    // Escaping special characters.
-    const keys = keysForTagsArray.map((str) => (str+'').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1"));
-
-    const regexp = new RegExp(keys.join('|'));
-
-    if (regexp.test(text)) {
-      if (keysForTagsArray.includes(text)) {
-        // The following processing is required because multiple characters may be specified as one delimiter.
-        let tempObject = {
-          tag: '',
-          tagsArray: tags.tagsArray,
-        };
-        updateState(tempObject);
-        return this.input.clear();
-      }
-      const tempTag = text.replace(regexp, '');
-      const tempArray = tags.tagsArray.concat(tempTag);
-      let tempObject = {
-        tag: '',
-        tagsArray: [...new Set(tempArray)] // Deduplication
+        tagsArray: tempArray
       };
       updateState(tempObject);
       return this.input.clear();
@@ -166,8 +117,6 @@ class Tags extends React.Component {
       tagsViewStyle,
       updateState,
       keysForTag,
-      keysForTagsArray,
-      deleteElement,
       deleteIconStyles,
       customElement,
     } = this.props;
@@ -192,8 +141,7 @@ class Tags extends React.Component {
               ])}
             {...props}
             value={tags.tag}
-            onChangeText={text => this.onChangeText(text, tags, updateState, keysForTag, keysForTagsArray)}
-            onEndEditing={() => this.onEndEditing(tags, updateState)}
+            onChangeText={text => this.onChangeText(text, tags, updateState, keysForTag)}
         />
         {rightElement ? this.renderRightElement(rightElement, rightElementContainerStyle) : null}
       </View>
@@ -206,14 +154,12 @@ class Tags extends React.Component {
                 key={count}
               >
               <Text style={StyleSheet.flatten([styles.tagText, tagTextStyle])}>{item}</Text>
-              <TouchableOpacity onPressIn={() => this.deleteTag(count, tags, updateState) }>
-                  {deleteElement ? deleteElement : (
-                    <Image
-                      source={require('./assets/close.png')}
-                      style={StyleSheet.flatten([styles.deleteIcon, deleteIconStyles])}
-                    />
-                  )}
-            </TouchableOpacity>
+              <TouchableHighlight onPress={() => this.deleteTag(count, tags, updateState) }>
+                <Image
+                  source={require('./assets/close.png')}
+                  style={StyleSheet.flatten([styles.deleteIcon, deleteIconStyles])}
+                  />
+            </TouchableHighlight>
             </View>
           )
           })}
@@ -232,7 +178,6 @@ Tags.propTypes = {
   tags: PropTypes.object,
   updateState: PropTypes.func,
   keysForTag: PropTypes.string,
-  keysForTagsArray: PropTypes.arrayOf(PropTypes.string),
   containerStyle: ViewPropTypes.style,
   inputContainerStyle: ViewPropTypes.style,
   inputStyle: TextInput.propTypes.style,
@@ -286,7 +231,7 @@ const styles = {
     borderRadius: 13,
     backgroundColor: '#979797',
     minWidth: 40,
-    maxWidth: 200,
+    maxWidth: 100,
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 5,
