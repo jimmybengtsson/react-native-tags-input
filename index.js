@@ -71,6 +71,7 @@ class Tags extends React.Component {
       }
       let tempTag = text.replace(keysStr, '');
       let tempArray = tags.tagsArray;
+      console.log(tempTag);
       tempArray.push(tempTag);
       let tempObject = {
         tag: '',
@@ -154,12 +155,12 @@ class Tags extends React.Component {
                 key={count}
               >
               <Text style={StyleSheet.flatten([styles.tagText, tagTextStyle])}>{item}</Text>
-              <TouchableHighlight onPress={() => this.deleteTag(count, tags, updateState) }>
+              <TouchableHighlight style={styles.close} onPress={() => this.deleteTag(count, tags, updateState) }>
                 <Image
                   source={require('./assets/close.png')}
                   style={StyleSheet.flatten([styles.deleteIcon, deleteIconStyles])}
                   />
-            </TouchableHighlight>
+              </TouchableHighlight>
             </View>
           )
           })}
@@ -180,10 +181,12 @@ Tags.propTypes = {
   keysForTag: PropTypes.string,
   containerStyle: ViewPropTypes.style,
   inputContainerStyle: ViewPropTypes.style,
+  // inputStyle: ViewPropTypes.style,
   inputStyle: TextInput.propTypes.style,
   disabledInputStyle: ViewPropTypes.style,
   leftElementContainerStyle: ViewPropTypes.style,
   rightElementContainerStyle: ViewPropTypes.style,
+  // labelStyle: ViewPropTypes.style,
   labelStyle: Text.propTypes.style,
   deleteIconStyles: ViewPropTypes.style,
 };
@@ -227,11 +230,11 @@ const styles = {
   },
   tag: {
     flexDirection: 'row',
-    height: 26,
+    minHeight: 26,
     borderRadius: 13,
     backgroundColor: '#979797',
     minWidth: 40,
-    maxWidth: 100,
+    maxWidth: 120,
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 5,
@@ -240,7 +243,12 @@ const styles = {
     borderColor: 'gray'
   },
   tagText: {
-    marginHorizontal: 5
+    marginHorizontal: 5,
+    marginRight: 23,
+  },
+  close: {
+    position: 'absolute',
+    right: 5,
   },
   labelStyle: {
     fontSize: 12,
