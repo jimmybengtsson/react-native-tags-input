@@ -7,8 +7,9 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  ViewPropTypes
 } from 'react-native';
+import { ViewPropTypes } from "deprecated-react-native-prop-types";
+
 
 class Tags extends React.Component {
 

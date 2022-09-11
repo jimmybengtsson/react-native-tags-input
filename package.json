@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/jimmybengtsson/react-native-tags-input#readme",
   "dependencies": {
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "deprecated-react-native-prop-types": "2.2.0"
   }
 }
