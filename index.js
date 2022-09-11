@@ -235,11 +235,11 @@ Tags.propTypes = {
   keysForTagsArray: PropTypes.arrayOf(PropTypes.string),
   containerStyle: ViewPropTypes.style,
   inputContainerStyle: ViewPropTypes.style,
-  inputStyle: TextInputPropTypes.propTypes.style,
+  inputStyle: TextInputPropTypes.style,
   disabledInputStyle: ViewPropTypes.style,
   leftElementContainerStyle: ViewPropTypes.style,
   rightElementContainerStyle: ViewPropTypes.style,
-  labelStyle: TextPropTypes.propTypes.style,
+  labelStyle: TextPropTypes.style,
   deleteIconStyles: ViewPropTypes.style,
 };
 
