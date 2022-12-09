@@ -205,7 +205,7 @@ class Tags extends React.Component {
                 style={StyleSheet.flatten([styles.tag, tagStyle])}
                 key={count}
               >
-              <Text style={StyleSheet.flatten([styles.tagText, tagTextStyle])}>{item}</Text>
+              <Text maxFontSizeMultiplier={1.2} style={StyleSheet.flatten([styles.tagText, tagTextStyle])}>{item}</Text>
               <TouchableOpacity onPressIn={() => this.deleteTag(count, tags, updateState) }>
                   {deleteElement ? deleteElement : (
                     <Image
