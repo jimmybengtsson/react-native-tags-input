@@ -179,6 +179,7 @@ class Tags extends React.Component {
         <View style={StyleSheet.flatten(StyleSheet.flatten([styles.inputContainer, inputContainerStyle]))}>
           {leftElement ? this.renderLeftElement(leftElement, leftElementContainerStyle) : null}
           <TextInput
+            removeClippedSubviews={false}
             underlineColorAndroid="transparent"
             editable={!disabled}
             ref={ref => {
